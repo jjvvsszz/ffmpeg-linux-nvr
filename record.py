@@ -18,7 +18,7 @@ parser.add_argument("--record-period", type=int, default=600,
                     help="Output file size in seconds")
 args = parser.parse_args()
 
-common =' -vf scale=1280:-1 -c:v libx264 -preset superfast -crf 25 -c:a aac -b:a 128k'
+common =' -vf scale=1280:-1 -c:v libx264 -preset superfast -crf 25 -c:a aac -b:a 64k'
 
 if args.camera == "camera1":
     # modify the IP address below to your camera1's IP
