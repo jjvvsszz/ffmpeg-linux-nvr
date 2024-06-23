@@ -42,7 +42,7 @@ if args.camera == "camera1":
     # modify the IP address below to your camera1's IP
     # RTSP path might be different for each camera brand
     # also, modify the username and password
-    # default might be like admin:admin 
+    # default might be like "admin:admin" or "admin:"
     cam = 'rtsp://username:password@ip:port/url'
 elif args.camera == "camera2":
     cam = 'rtsp://username:password@ip:port/url'
