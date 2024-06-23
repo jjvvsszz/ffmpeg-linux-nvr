@@ -29,7 +29,7 @@ args = parser.parse_args()
 if args.video_codec == "copy":
     videoargs  = '-c:v copy'
 elif args.video_codec == "libx264":
-    videoargs = '-fflags +genpts -vf scale=%s -c:v libx264 -preset %s -crf %s' % (args.video_scale, args.video_preset, args.video_crf)
+    videoargs = '-fflags +genpts -err_detect ignore_err -vf scale=%s -c:v libx264 -preset %s -crf %s -movflags +faststart -async 1 -vsync 1' % (args.video_scale, args.video_preset, args.video_crf)
 
 if args.audio_codec == "copy":
     audioargs  = '-c:a copy'
@@ -42,7 +42,7 @@ if args.camera == "camera1":
     # modify the IP address below to your camera1's IP
     # RTSP path might be different for each camera brand
     # also, modify the username and password
-    # default might be like "admin:admin" or "admin:"
+    # default might be like admin:admin 
     cam = 'rtsp://username:password@ip:port/url'
 elif args.camera == "camera2":
     cam = 'rtsp://username:password@ip:port/url'
@@ -66,7 +66,7 @@ while True:
     filename = return_filename()
     outfile = './%s/%s.%s' % (outdir, filename, args.video_format)
     # Create the ffmpeg command and its parameters
-    cmd = f'ffmpeg -rtsp_transport tcp -i ' + cam + common  + ' ' + outfile
+    cmd = f'ffmpeg -rtsp_transport tcp -timeout 5000000 -rw_timeout 10000000 -i ' + cam + common  + ' ' + outfile
     cmd = cmd.split(' ')
     cmd = [ix for ix in cmd if ix != '']
 
