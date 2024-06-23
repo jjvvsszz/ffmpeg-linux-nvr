@@ -66,7 +66,7 @@ while True:
     filename = return_filename()
     outfile = './%s/%s.%s' % (outdir, filename, args.video_format)
     # Create the ffmpeg command and its parameters
-    cmd = f'ffmpeg -rtsp_transport tcp -timeout 5000000 -rw_timeout 10000000 -i ' + cam + common  + ' ' + outfile
+    cmd = f'ffmpeg -rtsp_transport tcp -stimeout 5000000 -i ' + cam + common  + ' ' + outfile
     cmd = cmd.split(' ')
     cmd = [ix for ix in cmd if ix != '']
 
